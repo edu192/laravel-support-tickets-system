@@ -12,6 +12,7 @@ class TicketSeeder extends Seeder
     : void
     {
         // Fetch all users of type 'employee'
+
         $employees = User::where('type', 2)->get();
 
         // Create 10 tickets and assign a random employee to each one
