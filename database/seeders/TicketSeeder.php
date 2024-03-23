@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -14,14 +15,16 @@ class TicketSeeder extends Seeder
         // Fetch all users of type 'employee'
 
         $employees = User::where('type', 2)->get();
-
+        $categories=Category::all();
         // Create 10 tickets and assign a random employee to each one
-        Ticket::factory(25)->create()->each(function ($ticket) use ($employees) {
+        Ticket::factory(25)->create()->each(function ($ticket) use ($employees,$categories) {
             // Fetch a random employee
             $employee = $employees->pop();
 
             // Assign the employee to the ticket
             $ticket->assigned_agent()->attach($employee->id);
+            $ticket->category_id=$categories->random()->id;
+            $ticket->save();
         });
     }
 }

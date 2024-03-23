@@ -16,6 +16,7 @@ class Ticket extends Model
         'description',
         'status',
         'priority',
+        'category_id',
     ];
 
     protected function user()
@@ -34,5 +35,11 @@ class Ticket extends Model
     : BelongsToMany
     {
         return $this->belongsToMany(User::class, 'ticket_participants', 'ticket_id', 'user_id');
+    }
+
+    public function category()
+    : BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }
