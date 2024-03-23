@@ -19,6 +19,8 @@ class Ticket extends Model
         'category_id',
     ];
 
+
+
     protected function user()
     : BelongsTo
     {
