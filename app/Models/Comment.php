@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Comment extends Model
 {
     protected $fillable = [
-        'description',
+        'description', 'ticket_id', 'user_id',
     ];
 
     protected function ticket()

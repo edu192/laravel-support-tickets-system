@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\TicketController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::get('/tickets/view/{ticket}', [TicketController::class,'show'])->middleware(['auth', 'verified'])->name('user.ticket.show');
+Route::post('/tickets/view/{ticket}/comment', [TicketController::class,'post_comment'])->middleware(['auth', 'verified'])->name('user.ticket.comment');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

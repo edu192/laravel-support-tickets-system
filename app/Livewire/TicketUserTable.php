@@ -39,7 +39,7 @@ final class TicketUserTable extends PowerGridComponent
     public function datasource()
     : Builder
     {
-        return Ticket::query()->where('user_id', auth()->id());
+        return Ticket::query()->with('category')->where('user_id', auth()->id());
     }
 
     public function relationSearch()
@@ -81,8 +81,18 @@ final class TicketUserTable extends PowerGridComponent
                     ),
                 };
             })
-            ->add('priority')
-            ->add('category_id')
+            ->add('priority',function ($row){
+                $priority= match ($row->priority) {
+                    0 => 'Low',
+                    1 => 'Medium',
+                    2 => 'High',
+                    default => 'Unknown',
+                };
+                return '<span class="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">'.$priority.'</span>';
+            })
+            ->add('category_id', function ($row) {
+                return $row->category->name;
+            })
             ->add('updated_at')
             ->add('updated_at_formatted', function ($row) {
                 return Carbon::parse($row->updated_at)->diffForHumans();
@@ -134,11 +144,13 @@ final class TicketUserTable extends PowerGridComponent
     : array
     {
         return [
-            Button::add('edit')
-                ->slot('Edit: ' . $row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('openModal', ['component'=>'frontend.delete-ticket','arguments' => ['rowId' => $row->id]]),
+            Button::add('custom')
+                ->render(function (Ticket $ticket) {
+                    return \Blade::render(<<<HTML
+                    <a href="{{ route('user.ticket.show', $ticket->id) }}" class="rounded-md px-4 py-2 bg-gray-100 text-gray-500">View</a>
+                    HTML
+                    );
+                }),
         ];
     }
 
