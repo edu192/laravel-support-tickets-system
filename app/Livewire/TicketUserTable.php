@@ -81,14 +81,14 @@ final class TicketUserTable extends PowerGridComponent
                     ),
                 };
             })
-            ->add('priority',function ($row){
-                $priority= match ($row->priority) {
+            ->add('priority', function ($row) {
+                $priority = match ($row->priority) {
                     0 => 'Low',
                     1 => 'Medium',
                     2 => 'High',
                     default => 'Unknown',
                 };
-                return '<span class="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">'.$priority.'</span>';
+                return '<span class="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">' . $priority . '</span>';
             })
             ->add('category_id', function ($row) {
                 return $row->category->name;
@@ -147,7 +147,14 @@ final class TicketUserTable extends PowerGridComponent
             Button::add('custom')
                 ->render(function (Ticket $ticket) {
                     return \Blade::render(<<<HTML
-                    <a href="{{ route('user.ticket.show', $ticket->id) }}" class="rounded-md px-4 py-2 bg-gray-100 text-gray-500">View</a>
+                    <div class="flex items-center justify-center">
+                        <a href="{{ route('user.ticket.show', $ticket->id) }}" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">View</a>
+                        
+                        <form action="">
+                            <button type="button" onclick="Livewire.dispatch('openModal', { component: 'frontend.delete-ticket', arguments: { rowId: {{ $ticket->id }} }})"
+                             class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+                        </form>
+                    </div>
                     HTML
                     );
                 }),

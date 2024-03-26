@@ -48,6 +48,7 @@ class UserCreateTicket extends ModalComponent
         ]);
 
 //        $this->emit('ticket_created');
+        $this->dispatch('pg:eventRefresh-default');
         $this->closeModal();
     }
 }
