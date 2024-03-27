@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
 
             ]
         );
-        User::factory(50)->create();
+        User::factory(50)->create(['type' => 1]);
         $departments = Department::all();
         User::factory(30)->create(['type' => 2])->each(function ($user) use ($departments) {
             $user->department_id = $departments->random()->id;

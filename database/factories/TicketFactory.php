@@ -20,7 +20,7 @@ class TicketFactory extends Factory
             //status must only return numbers between 0 and 2
             'status' => $this->faker->numberBetween(0, 2),
             'priority' => $this->faker->numberBetween(0, 2),
-            'user_id' => User::query()->where('type', 0)->inRandomOrder()->first()->id,
+            'user_id' => User::query()->where('type', 1)->inRandomOrder()->first()->id,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
