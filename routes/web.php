@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/support/tickets', [\App\Http\Controllers\Backend\TicketController::class, 'index'])->name('backend.ticket.index');
     Route::get('/support/users', [\App\Http\Controllers\Backend\UserController::class, 'index'])->name('backend.user.index');
     Route::get('/support/departments', [\App\Http\Controllers\Backend\DepartmentController::class, 'index'])->name('backend.department.index');
+    Route::get('/support/categories', [\App\Http\Controllers\Backend\CategoryController::class, 'index'])->name('backend.category.index');
 });
 
 require __DIR__.'/auth.php';
