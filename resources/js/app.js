@@ -9,3 +9,4 @@ import './../../vendor/power-components/livewire-powergrid/dist/tailwind.css'
 // window.Alpine = Alpine;
 //
 // Alpine.start();
+import 'flowbite'
