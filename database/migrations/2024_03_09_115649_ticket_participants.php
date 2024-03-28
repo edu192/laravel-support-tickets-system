@@ -10,7 +10,7 @@ return new class extends Migration {
     {
         Schema::create('ticket_participants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ticket_id')->constrained('tickets');
+            $table->foreignId('ticket_id')->constrained('tickets')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
