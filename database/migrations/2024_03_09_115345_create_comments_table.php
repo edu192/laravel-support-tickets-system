@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->id();
             $table->text('description');
             $table->foreignId('ticket_id')->constrained('tickets')->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
