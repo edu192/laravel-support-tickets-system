@@ -81,6 +81,10 @@ final class BackendTicketTable extends PowerGridComponent
                     ),
                 };
             })
+            ->add('assign_status', function ($row) {
+                $assign_status =$row->assigned_agent->count()>0 ? 'Assigned' : 'Unassigned';
+                return '<span class="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">'.$assign_status.'</span>';
+            })
             ->add('priority', function ($row) {
                 $priority = match ($row->priority) {
                     0 => 'Low',
@@ -120,18 +124,18 @@ final class BackendTicketTable extends PowerGridComponent
                 ->searchable(),
 
 
-            Column::make('Status', 'status')
-                ->sortable()
-                ->searchable(),
             Column::make('Priority', 'priority')
                 ->sortable()
                 ->searchable(),
+            Column::make('Category', 'category_id'),
             Column::make('Last update', 'updated_at_formatted')
                 ->sortable(),
+            Column::make('Status', 'status')
+                ->sortable()
+                ->searchable(),
+            Column::make('Assigned', 'assign_status'),
 
-
-            Column::make('Category', 'category_id'),
-            Column::make('Assigned to', 'assigned_to'),
+//            Column::make('Assigned to', 'assigned_to'),
 
 
             Column::action('Action')
@@ -164,6 +168,10 @@ final class BackendTicketTable extends PowerGridComponent
                         <button onclick="Livewire.dispatch('openModal', { component: 'backend-view-ticket-modal', arguments: { ticket: {{ $ticket->id }} }})"
                          class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                             View
+                        </button>
+                         <button onclick="Livewire.dispatch('openModal', { component: 'backend.ticket-assign-modal', arguments: { ticket: {{ $ticket->id }} }})"
+                         class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                            Assign
                         </button>
                         <form action="">
                             <button type="button" onclick="Livewire.dispatch('openModal', { component: 'frontend.delete-ticket', arguments: { rowId: {{ $ticket->id }} }})"
