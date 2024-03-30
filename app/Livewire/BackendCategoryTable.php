@@ -39,7 +39,7 @@ final class BackendCategoryTable extends PowerGridComponent
     public function datasource()
     : Builder
     {
-        return Category::query();
+        return Category::query()->with('department');
     }
 
     public function relationSearch()
@@ -54,6 +54,8 @@ final class BackendCategoryTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
+            ->add('department_id')
+            ->add('department_formatted', fn(Category $row) => $row->department->name)
             ->add('updated_at')
             ->add('updated_at_formatted', fn(Category $row) => Carbon::parse($row->updated_at)->format('d/m/Y'))
             ->add('created_at')
@@ -66,6 +68,9 @@ final class BackendCategoryTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Name', 'name')
+                ->sortable()
+                ->searchable(),
+            Column::make('Department', 'department_formatted', 'department_id')
                 ->sortable()
                 ->searchable(),
 
@@ -98,11 +103,20 @@ final class BackendCategoryTable extends PowerGridComponent
     : array
     {
         return [
-            Button::add('edit')
-                ->slot('Edit: ' . $row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+            Button::add('custom')
+                ->render(function (Category $category) {
+                    return \Blade::render(<<<HTML
+                    <div class="flex items-center justify-center">
+                        <button onclick="Livewire.dispatch('openModal', { component: 'backend.category-edit-modal', arguments: { id: {{ $category->id }} }})"
+                                class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Edit</button>
+
+                        <button onclick="Livewire.dispatch('openModal', { component: 'backend.category-delete-modal', arguments: { id: {{ $category->id }} }})"
+                                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+
+                    </div>
+                    HTML
+                    );
+                }),
         ];
     }
 
