@@ -74,13 +74,6 @@ final class BackendCategoryTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
-
-            Column::make('Updated at', 'updated_at_formatted', 'updated_at')
-                ->sortable()
-                ->searchable(),
-
             Column::action('Action')
         ];
     }

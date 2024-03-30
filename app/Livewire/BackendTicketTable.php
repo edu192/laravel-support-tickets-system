@@ -20,7 +20,8 @@ final class BackendTicketTable extends PowerGridComponent
 {
     use WithExport;
 
-    public function setUp(): array
+    public function setUp()
+    : array
     {
         $this->showCheckBox();
 
@@ -35,17 +36,20 @@ final class BackendTicketTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): Builder
+    public function datasource()
+    : Builder
     {
         return Ticket::query();
     }
 
-    public function relationSearch(): array
+    public function relationSearch()
+    : array
     {
         return [];
     }
 
-    public function fields(): PowerGridFields
+    public function fields()
+    : PowerGridFields
     {
         return PowerGrid::fields()
             ->add('id')
@@ -89,13 +93,25 @@ final class BackendTicketTable extends PowerGridComponent
             ->add('category_id', function ($row) {
                 return $row->category->name;
             })
+            ->add('assigned_to', function ($row) {
+                $html = '';
+                if (empty($row->assigned_agent)) {
+                    return '<span class="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">Unassigned</span>';
+                } else {
+                    foreach ($row->assigned_agent as $agent) {
+                        $html .= '<span class="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">' . $agent->name . '</span>';
+                    }
+                }
+                return $html;
+            })
             ->add('updated_at')
             ->add('updated_at_formatted', function ($row) {
                 return Carbon::parse($row->updated_at)->diffForHumans();
             });
     }
 
-    public function columns(): array
+    public function columns()
+    : array
     {
         return [
             Column::make('Id', 'id'),
@@ -107,33 +123,37 @@ final class BackendTicketTable extends PowerGridComponent
             Column::make('Status', 'status')
                 ->sortable()
                 ->searchable(),
-            Column::make('Last update', 'updated_at_formatted')
-                ->sortable(),
-
             Column::make('Priority', 'priority')
                 ->sortable()
                 ->searchable(),
+            Column::make('Last update', 'updated_at_formatted')
+                ->sortable(),
+
 
             Column::make('Category', 'category_id'),
+            Column::make('Assigned to', 'assigned_to'),
 
 
             Column::action('Action')
         ];
     }
 
-    public function filters(): array
+    public function filters()
+    : array
     {
         return [
         ];
     }
 
     #[\Livewire\Attributes\On('edit')]
-    public function edit($rowId): void
+    public function edit($rowId)
+    : void
     {
-        $this->js('alert('.$rowId.')');
+        $this->js('alert(' . $rowId . ')');
     }
 
-    public function actions(Ticket $row): array
+    public function actions(Ticket $row)
+    : array
     {
         return [
             Button::add('custom')

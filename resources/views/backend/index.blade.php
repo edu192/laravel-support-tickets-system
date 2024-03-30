@@ -12,7 +12,7 @@
                         class="fa-solid fa-ticket"></i> {{$tickets->where('status',2)->count()}} Closed
             </x-dashboard.card>
             {{--Users--}}
-            <x-dashboard.card class="bg-cyan-500 text-white"><i
+            <x-dashboard.card class="text-white bg-cyan-500 "><i
                         class="fa-solid fa-user"></i> {{$users->where('type',0)->count()}} Admin
             </x-dashboard.card>
             <x-dashboard.card class="bg-blue-500 text-white"><i

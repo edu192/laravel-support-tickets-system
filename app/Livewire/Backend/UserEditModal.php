@@ -35,6 +35,7 @@ class UserEditModal extends ModalComponent
 
     public function render()
     {
+        $this->departmentInputStatus();
         return view('livewire.backend.user-edit-modal', ['departments' => Department::all()]);
     }
 

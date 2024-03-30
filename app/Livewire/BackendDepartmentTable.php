@@ -63,12 +63,6 @@ final class BackendDepartmentTable extends PowerGridComponent
             Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Updated at', 'updated_at_formatted', 'updated_at')
-                ->sortable(),
-
-            Column::make('Created at', 'created_at_formatted','created_at')
-                ->sortable()
-                ->searchable(),
 
             Column::action('Action')
         ];

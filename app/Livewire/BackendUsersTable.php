@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Department;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -64,11 +65,17 @@ final class BackendUsersTable extends PowerGridComponent
                 };
                 return $type;
             })
+            ->add('department_id')
+            ->add('department_formatted', function ($row) {
+                if (empty($row->department))
+                {
+                    return '<span class="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">Unassigned</span>';
+                }
+                return '<span class="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">'.$row->department?->name.'</span>' ;
+            })
             ->add('phone')
             ->add('address')
-            ->add('department', function ($row) {
-                return $row->department?->name;
-            });
+            ->add('department');
     }
 
     public function columns()
@@ -92,7 +99,9 @@ final class BackendUsersTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Department', 'department_id'),
+            Column::make('Department', 'department_formatted', 'department_id')
+                ->sortable()
+                ->searchable(),
             Column::action('Action')
         ];
     }
