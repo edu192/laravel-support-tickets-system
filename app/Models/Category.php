@@ -18,6 +18,6 @@ class Category extends Model
     public function department()
     : BelongsTo
     {
-        return $this->belongsTo(Category::class, 'department_id');
+        return $this->belongsTo(Department::class, 'department_id');
     }
 }
