@@ -22,6 +22,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+//File Download Route
+Route::get('/download/{file}', function (\App\Models\File $file){
+    return Storage::download('public/uploads/'.$file->name);
+})->name('download.file');
+//
 Route::get('/tickets/view/{ticket}', [TicketController::class,'show'])->middleware(['auth', 'verified'])->name('user.ticket.show');
 Route::post('/tickets/view/{ticket}/comment', [TicketController::class,'post_comment'])->middleware(['auth', 'verified'])->name('user.ticket.comment');
 Route::middleware('auth')->group(function () {

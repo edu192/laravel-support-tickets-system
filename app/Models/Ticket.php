@@ -44,4 +44,10 @@ class Ticket extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+    public function files()
+    : HasMany
+    {
+        return $this->hasMany(File::class, 'ticket_id');
+    }
 }
