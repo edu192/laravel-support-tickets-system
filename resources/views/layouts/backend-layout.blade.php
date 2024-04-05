@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +17,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased h-full">
 
 
 <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar"
@@ -89,8 +89,8 @@
     </div>
 </aside>
 
-<div class="p-4 sm:ml-64">
-    <div class="p-4  dark:border-gray-700">
+<div class="p-4 sm:ml-64 h-full">
+    <div class="p-4 dark:border-gray-700 h-full">
         {{ $slot}}
     </div>
 </div>

@@ -14,9 +14,10 @@
         default => 'Low',
     };
 @endphp
-<div class="flex flex-col py-12 px-6">
+<div class="flex flex-col pt-12 pb-4 px-6">
     <div>
-        <p class="text 2xl font-medium">Title: <span class="text-base font-normal text-gray-600">{{$ticket->title}}</span>
+        <p class="text 2xl font-medium">Title: <span
+                    class="text-base font-normal text-gray-600">{{$ticket->title}}</span>
         </p>
     </div>
     <div>
@@ -45,5 +46,11 @@
                 <span class="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">{{$agent->name}}</span>
             @endforeach
         </p>
+    </div>
+    <div class="flex justify-end">
+        <a href="{{route('backend.ticket.comments', $ticket->id)}}"
+                class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+            Comments
+        </a>
     </div>
 </div>

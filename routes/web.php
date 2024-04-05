@@ -31,6 +31,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/support', [\App\Http\Controllers\Backend\DashboardController::class, 'index'])->name('backend.dashboard.index');
     Route::get('/support/tickets', [\App\Http\Controllers\Backend\TicketController::class, 'index'])->name('backend.ticket.index');
+    Route::get('/support/tickets/{ticket}', [\App\Http\Controllers\Backend\TicketController::class, 'view'])->name('backend.ticket.comments');
+    Route::post('/support/tickets/{ticket}/post-comment', [\App\Http\Controllers\Backend\TicketController::class, 'post_comment'])->name('backend.ticket.post-comment');
     Route::get('/support/users', [\App\Http\Controllers\Backend\UserController::class, 'index'])->name('backend.user.index');
     Route::get('/support/departments', [\App\Http\Controllers\Backend\DepartmentController::class, 'index'])->name('backend.department.index');
     Route::get('/support/categories', [\App\Http\Controllers\Backend\CategoryController::class, 'index'])->name('backend.category.index');
