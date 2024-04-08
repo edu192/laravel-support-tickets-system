@@ -53,28 +53,30 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Tickets</span>
                 </a>
             </li>
-            <li>
-                <a href="{{route('backend.user.index')}}"
-                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <i
-                            class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  fa-solid fa-user"></i>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Users</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('backend.department.index')}}"
-                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <i class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white fa-solid fa-building"></i>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Departments</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('backend.category.index')}}"
-                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <i class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white fa-solid fa-table-list"></i>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Categories</span>
-                </a>
-            </li>
+            @if(auth()->user()->type==0)
+                <li>
+                    <a href="{{route('backend.user.index')}}"
+                       class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i
+                                class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  fa-solid fa-user"></i>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('backend.department.index')}}"
+                       class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white fa-solid fa-building"></i>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Departments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('backend.category.index')}}"
+                       class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white fa-solid fa-table-list"></i>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Categories</span>
+                    </a>
+                </li>
+            @endif
 
             <li>
                 <form action="{{route('logout')}}" method="post" class="w-full">
