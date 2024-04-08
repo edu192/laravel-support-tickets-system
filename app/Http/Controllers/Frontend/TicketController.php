@@ -23,6 +23,7 @@ class TicketController extends Controller
 
     public function post_comment(Request $request, Ticket $ticket)
     {
+        $this->authorize('post_comment', $ticket);
         $request->validate([
             'comment' => 'required|string|min:5,max:255'
         ]);
@@ -35,6 +36,7 @@ class TicketController extends Controller
 
     public function show(Ticket $ticket)
     {
+        $this->authorize('view', $ticket);
         return view('frontend.ticket.show', compact('ticket'));
     }
 

@@ -15,6 +15,7 @@ class AttachedFilesModal extends ModalComponent
 
     public function render()
     {
+        $this->authorize('view', $this->ticket);
         return view('livewire.frontend.ticket.attached-files-modal');
     }
 
