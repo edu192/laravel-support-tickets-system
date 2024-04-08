@@ -4,9 +4,9 @@
     </div>
     <form action="" class="px-4 grow flex flex-col" wire:submit.prevent="assign">
         <div class="mt-2">
-            <label for="department"
-                   class="block text-base font-medium text-gray-700 dark:text-gray-200">Department</label>
-            <select id="department" name="department" wire:model="agent_id"
+            <label for="agent_id"
+                   class="block text-base font-medium text-gray-700 dark:text-gray-200">Agent</label>
+            <select id="agent_id" name="agent_id" wire:model="agent_id"
                     class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm rounded-md">
                 @forelse($agents as $agent)
                     <option value="{{ $agent->id }}" @selected($agent->id==0) >{{ $agent->name }}</option>

@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Livewire\Backend;
+namespace App\Livewire\Backend\Department;
 
 use App\Models\Department;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class DepartmentCreateModal extends ModalComponent
+class CreateModal extends ModalComponent
 {
     public string $name = '';
 
     public function render()
     {
-        return view('livewire.backend.department-create-modal');
+        return view('livewire.backend.department.create-modal');
     }
 
     public static function modalMaxWidth()

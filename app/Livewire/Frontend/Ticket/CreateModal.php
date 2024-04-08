@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Frontend\Ticket;
 
 use App\Models\Category;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class UserCreateTicket extends ModalComponent
+class CreateModal extends ModalComponent
 {
     public int $category;
     public string $title;
@@ -20,7 +19,7 @@ class UserCreateTicket extends ModalComponent
     }
     public function render()
     {
-        return view('livewire.user-create-ticket', [
+        return view('livewire.frontend.ticket.create-modal', [
             'categories' => Category::all(),
         ]);
     }

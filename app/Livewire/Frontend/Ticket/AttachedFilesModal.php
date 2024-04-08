@@ -1,26 +1,21 @@
 <?php
 
-namespace App\Livewire\Backend;
+namespace App\Livewire\Frontend\Ticket;
 
 use App\Models\Ticket;
-use Livewire\Component;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 
-class TicketAttachedFilesModal extends ModalComponent
+class AttachedFilesModal extends ModalComponent
 {
     use WithFileUploads;
 
     public Ticket $ticket;
     public $files = [];
+
     public function render()
     {
-        return view('livewire.backend.ticket-attached-files-modal');
-    }
-
-    public static function modalMaxWidth(): string
-    {
-        return '2xl';
+        return view('livewire.frontend.ticket.attached-files-modal');
     }
 
     public function save_files()

@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Livewire\Backend;
+namespace App\Livewire\Backend\Category;
 
 use App\Models\Category;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class CategoryCreateModal extends ModalComponent
+class CreateModal extends ModalComponent
 {
     public string $name = '';
     public int $department_id = 1;
     public function render()
     {
-        return view('livewire.backend.category-create-modal',['departments'=>\App\Models\Department::all()]);
+        return view('livewire.backend.category.create-modal',['departments'=>\App\Models\Department::all()]);
     }
 
     public function create()

@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Livewire\Backend;
+namespace App\Livewire\Backend\Department;
 
 use App\Models\Department;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class DepartmentEditModal extends ModalComponent
+class EditModal extends ModalComponent
 {
     public int $id = 0;
     public string $name = '';
@@ -19,7 +18,7 @@ class DepartmentEditModal extends ModalComponent
 
     public function render()
     {
-        return view('livewire.backend.department-edit-modal');
+        return view('livewire.backend.department.edit-modal');
     }
 
     public static function modalMaxWidth(): string

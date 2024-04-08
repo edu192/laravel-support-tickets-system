@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Livewire\Backend;
+namespace App\Livewire\Backend\Category;
 
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class CategoryEditModal extends ModalComponent
+class EditModal extends ModalComponent
 {
     public int $id;
     public string $name = '';
     public int $department_id = 1;
     public function render()
     {
-        return view('livewire.backend.category-edit-modal',['departments'=>\App\Models\Department::all()]);
+        return view('livewire.backend.category.edit-modal',['departments'=>\App\Models\Department::all()]);
     }
 
     public function mount($id)

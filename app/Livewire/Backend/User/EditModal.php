@@ -1,29 +1,41 @@
 <?php
 
-namespace App\Livewire\Backend;
+namespace App\Livewire\Backend\User;
 
 use App\Models\Department;
 use App\Models\User;
-use Livewire\Attributes\On;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class UserCreateModal extends ModalComponent
+class EditModal extends ModalComponent
 {
+    public User $user;
     public string $name = '';
     public string $email = '';
     public string $password = '';
+    public string $password_confirmation = '';
     public int $type = 1;
     public string $phone = '';
     public string $address = '';
 //    public string $image = '';
-    public string $department_id = '';
+    public ?string $department_id = null;
 
     public bool $isDisabled = false;
 
+    public function mount(User $user)
+    {
+        $this->user = $user;
+        $this->name = $user->name;
+        $this->email = $user->email;
+        $this->type = $user->type;
+        $this->phone = $user->phone;
+        $this->address = $user->address;
+        $this->department_id = $user->department_id;
+    }
+
     public function render()
     {
-        return view('livewire.backend.user-create-modal', ['departments' => Department::all()]);
+        $this->departmentInputStatus();
+        return view('livewire.backend.user.edit-modal', ['departments' => Department::all()]);
     }
 
     public function departmentInputStatus()
@@ -35,28 +47,31 @@ class UserCreateModal extends ModalComponent
         }
     }
 
-    public function create_user()
+    public function update_user()
     {
         $this->validate([
             'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . $this->user->id,
             'type' => 'required|integer',
             'phone' => 'required|string',
             'address' => 'required|string',
-            'department_id' => 'required|integer',
+            'department_id' => 'nullable|integer',
+            'password' => 'nullable|string|confirmed',
         ]);
-        User::create([
+
+        $this->user->update([
             'name' => $this->name,
             'email' => $this->email,
-            'password' => $this->password,
             'type' => $this->type,
             'phone' => $this->phone,
             'image' => 'default.jpg',
             'address' => $this->address,
             'department_id' => $this->department_id,
+            'password' => $this->password ? $this->password : $this->user->password,
         ]);
-        toastr()->success('User created successfully');
+
+        toastr()->success('User updated successfully');
+        $this->dispatch('pg:eventRefresh-default');
         $this->closeModal();
     }
 }

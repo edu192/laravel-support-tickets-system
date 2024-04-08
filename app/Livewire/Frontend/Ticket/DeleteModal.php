@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Livewire\Frontend;
+namespace App\Livewire\Frontend\Ticket;
 
-use App\Livewire\TicketUserTable;
 use App\Models\Ticket;
-use App\Models\User;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class DeleteTicket extends ModalComponent
+class DeleteModal extends ModalComponent
 {
     public string $rowId;
 
@@ -18,7 +15,7 @@ class DeleteTicket extends ModalComponent
     }
     public function render()
     {
-        return view('livewire.frontend.delete-ticket');
+        return view('livewire.frontend.ticket.delete-modal');
     }
 
     public function delete_ticket()

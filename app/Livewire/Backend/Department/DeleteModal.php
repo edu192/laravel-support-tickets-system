@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Livewire\Backend;
+namespace App\Livewire\Backend\Department;
 
 use App\Models\Department;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class DepartmentDeleteModal extends ModalComponent
+class DeleteModal extends ModalComponent
 {
     public int $department_id;
     public function render()
     {
-        return view('livewire.backend.department-delete-modal');
+        return view('livewire.backend.department.delete-modal');
     }
 
     public function delete()

@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Livewire\Backend;
+namespace App\Livewire\Backend\User;
 
 use App\Models\User;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class DeleteUserModal extends ModalComponent
+class DeleteModal extends ModalComponent
 {
     public int $userId;
     public function render()
     {
-        return view('livewire.backend.delete-user-modal');
+        return view('livewire.backend.user.delete-modal');
     }
 
     public function delete_user()

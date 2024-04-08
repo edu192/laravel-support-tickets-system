@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Livewire\Backend;
+namespace App\Livewire\Backend\Ticket;
 
 use App\Models\Ticket;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
 class CloseTicketModal extends ModalComponent
@@ -12,7 +11,7 @@ class CloseTicketModal extends ModalComponent
 
     public function render()
     {
-        return view('livewire.backend.close-ticket-modal');
+        return view('livewire.backend.ticket.close-ticket-modal');
     }
 
     public function close_ticket()

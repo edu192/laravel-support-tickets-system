@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Livewire\Backend;
+namespace App\Livewire\Backend\Category;
 
 use App\Models\Category;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class CategoryDeleteModal extends ModalComponent
+class DeleteModal extends ModalComponent
 {
     public int $id;
 
     public function render()
     {
-        return view('livewire.backend.category-delete-modal');
+        return view('livewire.backend.category.delete-modal');
     }
 
     public function delete()

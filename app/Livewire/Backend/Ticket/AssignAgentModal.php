@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Livewire\Backend;
+namespace App\Livewire\Backend\Ticket;
 
 use App\Models\Ticket;
 use App\Models\User;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class TicketAssignModal extends ModalComponent
+class AssignAgentModal extends ModalComponent
 {
     public Ticket $ticket;
     public int $agent_id;
@@ -17,7 +16,7 @@ class TicketAssignModal extends ModalComponent
         $agents = User::where('type', '2')->where('department_id', $this->ticket->category->department->id)->get();
         $this->agent_id = !empty($agents) ? $agents->first()->id : 0;
         $assigned_agents = Ticket::where('id', $this->ticket->id)->first()->assigned_agent;
-        return view('livewire.backend.ticket-assign-modal', ['agents' => $agents, 'assigned_agents' => $assigned_agents]);
+        return view('livewire.backend.ticket.assign-agent-modal', ['agents' => $agents, 'assigned_agents' => $assigned_agents]);
     }
 
 

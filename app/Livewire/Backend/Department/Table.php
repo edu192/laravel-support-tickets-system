@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Backend\Department;
 
 use App\Models\Department;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class BackendDepartmentTable extends PowerGridComponent
+final class Table extends PowerGridComponent
 {
     use WithExport;
 
@@ -87,10 +86,10 @@ final class BackendDepartmentTable extends PowerGridComponent
                 ->render(function (Department $department) {
                     return \Blade::render(<<<HTML
                     <div class="flex items-center justify-center">
-                        <button onclick="Livewire.dispatch('openModal', { component: 'backend.department-edit-modal', arguments: { department: {{ $department->id }} }})"
+                        <button onclick="Livewire.dispatch('openModal', { component: 'backend.department.edit-modal', arguments: { department: {{ $department->id }} }})"
                         class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Edit</button>
                         
-                            <button onclick="Livewire.dispatch('openModal', { component: 'backend.department-delete-modal', arguments: { department_id: {{ $department->id }} }})"
+                            <button onclick="Livewire.dispatch('openModal', { component: 'backend.department.delete-modal', arguments: { department_id: {{ $department->id }} }})"
                              class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
                         
                     </div>
