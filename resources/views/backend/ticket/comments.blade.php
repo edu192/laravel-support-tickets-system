@@ -1,9 +1,24 @@
+@php
+    $status=match ($ticket->status)
+    {
+        0 => ['Open','green'],
+        1 => ['In Progress','yellow'],
+        2 => ['Closed','red'],
+        default => ['Open','green'],
+    };
+@endphp
+
 <x-backend-layout>
     <div class="h-full flex flex-col">
-        <h3 class="text-2xl font-bold mb-4 border-b">
-            Ticket ID: {{$ticket->id}}
+        <h3 class="text-2xl font-bold mb-4 border-b flex items-center gap-4">
+            <span>Ticket ID: {{$ticket->id}}</span>
+            <x-badge :color="$status[1]" :text="$status[0]" />
         </h3>
         <div class="flex justify-end">
+            <button onclick="Livewire.dispatch('openModal', { component: 'backend.ticket.view-modal', arguments: { ticket: {{ $ticket->id }} }})"
+                    class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                View
+            </button>
             <button type="button"
                     onclick="Livewire.dispatch('openModal', { component: 'backend.ticket.attached-files-modal', arguments:{ ticket:{{$ticket->id}} }})"
                     class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">

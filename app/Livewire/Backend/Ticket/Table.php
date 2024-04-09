@@ -127,11 +127,10 @@ final class Table extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
             Column::make('Category', 'category_id'),
-            Column::make('Last update', 'updated_at_formatted')
+            Column::make('Last update', 'updated_at_formatted', 'updated_at')
                 ->sortable(),
             Column::make('Status', 'status')
-                ->sortable()
-                ->searchable(),
+                ->sortable(),
             Column::make('Assigned', 'assign_status'),
 
 //            Column::make('Assigned to', 'assigned_to'),
