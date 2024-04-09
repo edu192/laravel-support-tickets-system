@@ -13,6 +13,11 @@ class TicketController extends Controller
         return view('backend.ticket.index');
     }
 
+    public function assigned_tickets()
+    {
+        return view('backend.ticket.agent.index');
+    }
+
     public function view(Ticket $ticket)
     {
         return view('backend.ticket.comments', compact('ticket'));

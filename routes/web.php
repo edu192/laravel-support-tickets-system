@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::group(['middleware' => ['backend']],function (){
         Route::get('/support', [\App\Http\Controllers\Backend\DashboardController::class, 'index'])->name('backend.dashboard.index');
         Route::get('/support/tickets', [\App\Http\Controllers\Backend\TicketController::class, 'index'])->name('backend.ticket.index');
+        Route::get('/support/assigned-tickets', [\App\Http\Controllers\Backend\TicketController::class, 'assigned_tickets'])->name('backend.ticket.assigned');
         Route::get('/support/tickets/{ticket}', [\App\Http\Controllers\Backend\TicketController::class, 'view'])->name('backend.ticket.comments');
         Route::post('/support/tickets/{ticket}/post-comment', [\App\Http\Controllers\Backend\TicketController::class, 'post_comment'])->name('backend.ticket.post-comment');
         Route::group(['middleware' => 'backend.admin'],function (){
