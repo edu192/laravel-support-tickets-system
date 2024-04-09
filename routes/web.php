@@ -35,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::group(['middleware' => ['backend']],function (){
+        Route::get('/profile', [\App\Http\Controllers\Backend\DashboardController::class, 'profile_edit'])->name('backend.profile.edit');
+        Route::post('/profile', [\App\Http\Controllers\Backend\DashboardController::class, 'profile_update'])->name('backend.profile.update');
+        Route::post('/profile/change-password', [\App\Http\Controllers\Backend\DashboardController::class, 'profile_update_password'])->name('backend.profile.update.password');
         Route::get('/support', [\App\Http\Controllers\Backend\DashboardController::class, 'index'])->name('backend.dashboard.index');
         Route::get('/support/tickets', [\App\Http\Controllers\Backend\TicketController::class, 'index'])->name('backend.ticket.index');
         Route::get('/support/assigned-tickets', [\App\Http\Controllers\Backend\TicketController::class, 'assigned_tickets'])->name('backend.ticket.assigned');
