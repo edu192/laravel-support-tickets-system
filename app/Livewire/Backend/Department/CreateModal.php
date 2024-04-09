@@ -11,6 +11,7 @@ class CreateModal extends ModalComponent
 
     public function render()
     {
+        $this->authorize('create', Department::class);
         return view('livewire.backend.department.create-modal');
     }
 

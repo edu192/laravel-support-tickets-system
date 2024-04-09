@@ -15,6 +15,7 @@ class DeleteModal extends ModalComponent
 
     public function delete_user()
     {
+        $this->authorize('create', User::class);
         $user=User::find($this->userId);
         $user->delete();
         $this->dispatch('pg:eventRefresh-default');

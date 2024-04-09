@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Backend\Category;
 
+use App\Models\Category;
 use LivewireUI\Modal\ModalComponent;
 
 class EditModal extends ModalComponent
@@ -11,6 +12,7 @@ class EditModal extends ModalComponent
     public int $department_id = 1;
     public function render()
     {
+        $this->authorize('create', Category::class);
         return view('livewire.backend.category.edit-modal',['departments'=>\App\Models\Department::all()]);
     }
 

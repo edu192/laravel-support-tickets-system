@@ -11,6 +11,7 @@ class DeleteModal extends ModalComponent
 
     public function render()
     {
+        $this->authorize('create', Category::class);
         return view('livewire.backend.category.delete-modal');
     }
 

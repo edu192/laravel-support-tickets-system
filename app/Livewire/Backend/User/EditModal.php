@@ -34,6 +34,7 @@ class EditModal extends ModalComponent
 
     public function render()
     {
+        $this->authorize('create', User::class);
         $this->departmentInputStatus();
         return view('livewire.backend.user.edit-modal', ['departments' => Department::all()]);
     }
