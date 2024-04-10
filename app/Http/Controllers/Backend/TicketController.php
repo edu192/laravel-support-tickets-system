@@ -33,4 +33,7 @@ class TicketController extends Controller
         ]);
         return back();
     }
+    public function unassigned(){
+        return view('backend.ticket.unassigned-table');
+    }
 }

@@ -57,6 +57,9 @@
                             <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
                                 {{auth()->user()->email}}
                             </p>
+                            <p class="text-sm font-black text-gray-900 truncate dark:text-gray-300" role="none">
+                                {{auth()->user()->department?->name}} Department
+                            </p>
                         </div>
                         <ul class="py-1" role="none">
                             <li>
@@ -67,7 +70,8 @@
                             <li>
                                 <form action="{{route('logout')}}" method="post">
                                     @csrf
-                                    <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    <button type="submit"
+                                            class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                             role="menuitem">Sign out
                                     </button>
                                 </form>
@@ -97,18 +101,31 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('backend.ticket.assigned')}}"
-                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <button type="button"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                     <i class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white   fa-solid fa-ticket"></i>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Assigned tickets</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('backend.ticket.index')}}"
-                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <i class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white   fa-solid fa-ticket"></i>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Tickets</span>
-                </a>
+                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Tickets</span>
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                         viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="m1 1 4 4 4-4"/>
+                    </svg>
+                </button>
+                <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                    <li>
+                        <a href="{{route('backend.ticket.assigned')}}"
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Assigned</a>
+                    </li>
+                    <li>
+                        <a href="{{route('backend.ticket.unassigned')}}"
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Unassigned</a>
+                    </li>
+                    <li>
+                        <a href="{{route('backend.ticket.index')}}"
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">All</a>
+                    </li>
+                </ul>
             </li>
             @if(auth()->user()->type==0)
                 <li>

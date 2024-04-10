@@ -21,6 +21,7 @@ class SelfAssignModal extends ModalComponent
         $ticket = Ticket::find($this->ticket_id);
         $ticket->assigned_agent()->syncWithoutDetaching($this->user_id);
         $ticket->status = 1;
+        $ticket->save();
         return redirect()->route('backend.ticket.comments', $this->ticket_id);
     }
 }
