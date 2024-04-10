@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\Backend;
 
 use App\Models\Ticket;
 use Illuminate\Bus\Queueable;
@@ -21,7 +21,7 @@ class TicketCreatedMail extends Mailable
     : Envelope
     {
         return new Envelope(
-            subject: 'Ticket Created',
+            subject: 'New ticket',
         );
     }
 
@@ -29,7 +29,7 @@ class TicketCreatedMail extends Mailable
     : Content
     {
         return new Content(
-            markdown: 'emails.ticket-created',
+            markdown: 'emails.backend.ticket-created',
             with: ['ticket' => $this->ticket],
         );
     }
