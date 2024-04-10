@@ -40,6 +40,11 @@ class TicketController extends Controller
         return view('frontend.ticket.show', compact('ticket'));
     }
 
+    public function closed_tickets()
+    {
+        return view('frontend.ticket.closed');
+    }
+
     public function edit($id)
     {
     }

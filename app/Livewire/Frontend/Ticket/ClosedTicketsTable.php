@@ -3,19 +3,20 @@
 namespace App\Livewire\Frontend\Ticket;
 
 use App\Models\Ticket;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class Table extends PowerGridComponent
+final class ClosedTicketsTable extends PowerGridComponent
 {
     use WithExport;
 
@@ -38,7 +39,7 @@ final class Table extends PowerGridComponent
     public function datasource()
     : Builder
     {
-        return Ticket::query()->with('category')->where('user_id', auth()->id())->where('status','!=' ,2);
+        return Ticket::query()->with('category')->where('user_id', auth()->id())->where('status', 2);
     }
 
     public function relationSearch()
