@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Mail\Backend\TicketCreatedMail as BackendTicketCreatedMail;
+use App\Mail\Frontend\TicketClosedMail;
 use App\Mail\Frontend\TicketCreatedMail as UserTicketCreatedMail;
 use App\Models\Category;
 use App\Models\Ticket;
@@ -26,6 +27,9 @@ class TicketObserver
     public function updated(Ticket $ticket)
     : void
     {
+        if ($ticket->status==2){
+            Mail::to($ticket->user->email)->send(new TicketClosedMail($ticket));
+        }
     }
 
     public function deleted(Ticket $ticket)
