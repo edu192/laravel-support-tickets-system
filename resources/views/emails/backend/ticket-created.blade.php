@@ -8,7 +8,7 @@
     Category: {{ $ticket->category->name }}
     Department: {{$ticket->category->department->name}}
 
-    @component('mail::button', ['url' => route('backend.ticket.comments',$ticket)])
+    @component('mail::button', ['url' => route('backend.ticket.index')])
         View
     @endcomponent
 
