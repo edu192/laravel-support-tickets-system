@@ -50,6 +50,12 @@ class TicketPolicy
     public function post_comment(User $user, Ticket $ticket)
     : bool
     {
-        return $user->id===$ticket->user_id;
+        if ($ticket->status !== 2) {
+            $participantIds = $ticket->assigned_agent->pluck('id')->toArray();
+            if ($user->id === $ticket->user_id||in_array($user->id, $participantIds)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

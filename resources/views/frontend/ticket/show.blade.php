@@ -23,7 +23,8 @@
                                     Comments
                                 </div>
 
-                                <div class="grow flex flex-col overflow-y-scroll" x-init="$el.scrollTop = $el.scrollHeight">
+                                <div class="grow flex flex-col overflow-y-scroll"
+                                     x-init="$el.scrollTop = $el.scrollHeight">
                                     @forelse($ticket->comments as $comment)
                                         @include('frontend.ticket.partials._comment', ['comment' => $comment])
                                     @empty
@@ -34,8 +35,9 @@
 
                         </div>
                         <div class="row-span-2 col-span-2 h-auto border-t">
-                                @csrf
+                            @can('post_comment', $ticket)
                                 @include('frontend.ticket.partials._comment_input')
+                            @endcan
 
                         </div>
                     </div>

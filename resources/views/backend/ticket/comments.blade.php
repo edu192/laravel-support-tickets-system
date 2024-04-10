@@ -49,23 +49,28 @@
             @empty
             @endforelse
         </div>
-        <div class="">
-            <form action="{{route('backend.ticket.post-comment',$ticket)}}" method="post">
-                @csrf
-                <div class="flex flex-col">
-                    <label for="description" class="text-lg font-medium py-2">Comment</label>
-                    <textarea name="comment" id="description" cols="30" rows="10"
-                              class="w-full p-2 border border-gray-300 rounded-md"></textarea>
-                    @error('comment')
-                    <div class="text-red-500 text-sm">{{$message}}</div>
-                    @enderror
-                    <button type="submit"
-                            class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                        Comment
-                    </button>
-                </div>
-            </form>
-        </div>
+        @can('post_comment',$ticket)
+
+            <div class="">
+                <form action="{{route('backend.ticket.post-comment',$ticket)}}" method="post">
+                    @csrf
+                    <div class="flex flex-col">
+                        <label for="description" class="text-lg font-medium py-2">Comment</label>
+                        <textarea name="comment" id="description" cols="30" rows="10"
+                                  class="w-full p-2 border border-gray-300 rounded-md"></textarea>
+                        @error('comment')
+                        <div class="text-red-500 text-sm">{{$message}}</div>
+                        @enderror
+
+                        <button type="submit"
+                                class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                            Comment
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        @endcan
     </div>
 
 

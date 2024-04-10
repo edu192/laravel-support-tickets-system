@@ -2,16 +2,16 @@
 @php
     $status=match ($ticket->status)
     {
-        '0' => 'Open',
-        '1' => 'In Progress',
-        '2' => 'Closed',
+        0 => 'Open',
+        1 => 'In Progress',
+        2 => 'Closed',
         default => 'Open',
     };
     $priority=match ($ticket->priority)
     {
-        '0' => 'Low',
-        '1' => 'Medium',
-        '2' => 'High',
+        0 => 'Low',
+        1 => 'Medium',
+        2 => 'High',
         default => 'Low',
     };
 @endphp
