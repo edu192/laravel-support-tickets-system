@@ -11,17 +11,16 @@ class DeleteModal extends ModalComponent
 
     public function mount()
     {
-
+        $ticket = Ticket::find($this->rowId);
+        $this->authorize('delete',$ticket);
     }
     public function render()
     {
-        $this->authorize('delete',Ticket::find($this->rowId));
         return view('livewire.frontend.ticket.delete-modal');
     }
 
     public function delete_ticket()
     {
-        $this->authorize('delete',Ticket::find($this->rowId));
         $ticket = Ticket::find($this->rowId);
         $this->authorize('delete',$ticket);
         $ticket->delete();

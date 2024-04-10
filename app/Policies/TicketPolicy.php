@@ -35,10 +35,7 @@ class TicketPolicy
     public function delete(User $user, Ticket $ticket)
     : bool
     {
-        if ($ticket->status == 0) {
-            return $ticket->user_id == auth()->user()->id;
-        }
-        return false;
+        return $ticket->status==0 && $user->id === $ticket->user_id;
     }
 
     public function restore(User $user, Ticket $ticket)
