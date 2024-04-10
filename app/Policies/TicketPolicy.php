@@ -19,7 +19,7 @@ class TicketPolicy
     public function view(User $user, Ticket $ticket)
     : bool
     {
-        return $user->id===$ticket->user_id;
+        return $user->id === $ticket->user_id;
     }
 
     public function create(User $user)
@@ -35,7 +35,10 @@ class TicketPolicy
     public function delete(User $user, Ticket $ticket)
     : bool
     {
-        return $user->id===$ticket->user_id||$user->type===0;
+        if ($ticket->status == 0) {
+            return $ticket->user_id == auth()->user()->id;
+        }
+        return false;
     }
 
     public function restore(User $user, Ticket $ticket)
@@ -47,12 +50,13 @@ class TicketPolicy
     : bool
     {
     }
+
     public function post_comment(User $user, Ticket $ticket)
     : bool
     {
         if ($ticket->status !== 2) {
             $participantIds = $ticket->assigned_agent->pluck('id')->toArray();
-            if ($user->id === $ticket->user_id||in_array($user->id, $participantIds)) {
+            if ($user->id === $ticket->user_id || in_array($user->id, $participantIds)) {
                 return true;
             }
         }
