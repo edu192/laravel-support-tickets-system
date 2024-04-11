@@ -17,14 +17,17 @@ class TicketSeeder extends Seeder
         $employees = User::where('type', 2)->get();
         $categories=Category::all();
         // Create 10 tickets and assign a random employee to each one
-        Ticket::factory(25)->create()->each(function ($ticket) use ($employees,$categories) {
-            // Fetch a random employee
-            $employee = $employees->pop();
+        Ticket::withoutEvents(function () use ($employees, $categories) {
+            Ticket::factory(25)->create()->each(function ($ticket) use ($employees, $categories) {
+                // Fetch a random employee
+                $employee = $employees->pop();
 
-            // Assign the employee to the ticket
-            $ticket->assigned_agent()->attach($employee->id);
-            $ticket->category_id=$categories->random()->id;
-            $ticket->save();
+                // Assign the employee to the ticket
+                $ticket->assigned_agent()->attach($employee->id);
+                $ticket->status = 1;
+                $ticket->category_id=$categories->random()->id;
+                $ticket->save();
+            });
         });
     }
 }

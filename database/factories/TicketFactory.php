@@ -21,6 +21,7 @@ class TicketFactory extends Factory
             'status' => $this->faker->numberBetween(0, 2),
             'priority' => $this->faker->numberBetween(0, 2),
             'user_id' => User::query()->where('type', 1)->inRandomOrder()->first()->id,
+            'category_id' => 1, // This is a temporary value and will be updated in the TicketSeeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
