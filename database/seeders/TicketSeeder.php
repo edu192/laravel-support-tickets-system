@@ -2,32 +2,41 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
+use App\Models\Department;
 use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 
 class TicketSeeder extends Seeder
 {
     public function run()
     : void
     {
-        // Fetch all users of type 'employee'
-
-        $employees = User::where('type', 2)->get();
-        $categories=Category::all();
-        // Create 10 tickets and assign a random employee to each one
-        Ticket::withoutEvents(function () use ($employees, $categories) {
-            Ticket::factory(25)->create()->each(function ($ticket) use ($employees, $categories) {
-                // Fetch a random employee
-                $employee = $employees->pop();
-
-                // Assign the employee to the ticket
-                $ticket->assigned_agent()->attach($employee->id);
+        $departments = Department::with(['categories', 'users'])->get();
+        Ticket::withoutEvents(function () use ($departments) {
+            User::where('type', 1)->get()->each(function ($user) use ($departments) {
+                Ticket::factory(6)->create([
+                    'user_id' => $user->id,
+                    'status' => 0,
+                ])->each(function ($ticket) use ($departments) {
+                    $ticket->category_id = $departments->random()->categories->random()->id;
+                    $ticket->save();
+                });
+            });
+            Ticket::inRandomOrder()->take(200)->get()->each(function ($ticket) use ($departments) {
                 $ticket->status = 1;
-                $ticket->category_id=$categories->random()->id;
+                $ticket->assigned_agent()->attach($ticket->category->department->users->random());
+                Log::info('TicketSeeder: Updated status to 1 for ticket id: ' . $ticket->id);
+                $ticket->save();
+            });
+            Ticket::whereDoesntHave('assigned_agent')->take(50)->get()->each(function ($ticket) use ($departments) {
+                $ticket->assigned_agent()->attach($ticket->category->department->users->random());
+                $ticket->status = 2;
+                Log::info('TicketSeeder: Updated status to 2 for ticket id: ' . $ticket->id);
                 $ticket->save();
             });
         });
+        ;
     }
 }
