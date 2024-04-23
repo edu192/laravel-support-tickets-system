@@ -15,19 +15,37 @@
                     @enderror
                 </div>
                 <div>
-                    <label for="category"
-                           class="block text-base font-medium text-gray-700 dark:text-gray-200">Category</label>
-                    <select id="category" name="category" wire:model="category"
-                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm rounded-md">
-                        @forelse($categories as $category)
-                            <option value="{{ $category->id }}" @selected($category->id==0) >{{ $category->name }}</option>
-                            @empty
-                        @endforelse
-                    </select>
-                    @error('category')
-                    <span class="text-red-500">{{ $message }}</span>
-                    @enderror
+                    <div>
+                        <label for="priority"
+                               class="block text-base font-medium text-gray-700 dark:text-gray-200">Priority</label>
+                        <select id="priority" wire:model="priority"
+                                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm rounded-md">
+                            <option value="0">Low</option>
+                            <option value="1">Medium</option>
+                            <option value="2">High</option>
+                        </select>
+                        @error('priority')
+                        <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </div>
+
                 </div>
+            </div>
+        </div>
+        <div>
+            <div class=" h-full">
+                <label for="category"
+                       class="block text-base font-medium text-gray-700 dark:text-gray-200">Category</label>
+                <select id="category" name="category" wire:model="category"
+                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm rounded-md">
+                    @forelse($categories as $category)
+                        <option value="{{ $category->id }}" @selected($category->id==0) >{{ $category->name }}</option>
+                    @empty
+                    @endforelse
+                </select>
+                @error('category')
+                <span class="text-red-500">{{ $message }}</span>
+                @enderror
             </div>
         </div>
         <div class="grow flex flex-col">
