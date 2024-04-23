@@ -11,7 +11,7 @@ class CommentSeeder extends Seeder
     public function run()
     : void
     {
-        $tickets = Ticket::all();
+        $tickets = Ticket::whereHas('assigned_agent')->where('status', '!=', 0)->get();
         Comment::withoutEvents(function () use ($tickets) {
             $tickets->each(function ($ticket) {
                 $ticket->comments()->createMany([
