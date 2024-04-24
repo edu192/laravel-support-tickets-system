@@ -11,10 +11,10 @@ class CommentObserver
     : void
     {
         if ($comment->user_id !== $comment->ticket->user->id) {
-            $comment->user->notify(new CommentCreatedNotification($comment, "Your ticket ({$comment->ticket_id}) has received a new comment from our support agent.", route('user.ticket.show', $comment->ticket_id)));
+            $comment->user->notify(new CommentCreatedNotification($comment->id, "Your ticket ({$comment->ticket_id}) has received a new comment from our support agent.", route('user.ticket.show', $comment->ticket_id)));
         } else {
             $comment->ticket->assigned_agent()->each(function ($agent) use ($comment) {
-                $agent->notify(new CommentCreatedNotification($comment, "Ticket ({$comment->ticket_id}) has received a new comment from the user.", route('backend.ticket.comments', $comment->ticket_id)));
+                $agent->notify(new CommentCreatedNotification($comment->id, "Ticket ({$comment->ticket_id}) has received a new comment from the user.", route('backend.ticket.comments', $comment->ticket_id)));
             });
         }
     }
