@@ -2,17 +2,20 @@
 
 namespace App\Observers;
 
-use App\Mail\Frontend\CommentCreatedMail;
 use App\Models\Comment;
-use Illuminate\Support\Facades\Mail;
+use App\Notifications\CommentCreatedNotification;
 
 class CommentObserver
 {
     public function created(Comment $comment)
     : void
     {
-        if ($comment->user->id !== $comment->ticket->user->id) {
-            Mail::to($comment->ticket->user->email)->send(new CommentCreatedMail($comment));
+        if ($comment->user_id !== $comment->ticket->user->id) {
+            $comment->user->notify(new CommentCreatedNotification($comment, "Your ticket ({$comment->ticket_id}) has received a new comment from our support agent.", route('user.ticket.show', $comment->ticket_id)));
+        } else {
+            $comment->ticket->assigned_agent()->each(function ($agent) use ($comment) {
+                $agent->notify(new CommentCreatedNotification($comment, "Ticket ({$comment->ticket_id}) has received a new comment from the user.", route('backend.ticket.comments', $comment->ticket_id)));
+            });
         }
     }
 
