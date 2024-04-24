@@ -22,7 +22,6 @@ class DeleteModal extends ModalComponent
     public function delete_ticket()
     {
         $ticket = Ticket::find($this->rowId);
-        $this->authorize('delete',$ticket);
         $ticket->delete();
         $this->dispatch('pg:eventRefresh-default');
         toastr()->success('Ticket deleted successfully!');

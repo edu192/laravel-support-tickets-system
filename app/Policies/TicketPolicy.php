@@ -10,6 +10,16 @@ class TicketPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user, string $ability)
+    : bool|null
+    {
+        if ($user->type === 0) {
+            return true;
+        }
+
+        return null;
+    }
+
     public function viewAny(User $user)
     : bool
     {
@@ -35,7 +45,7 @@ class TicketPolicy
     public function delete(User $user, Ticket $ticket)
     : bool
     {
-        return $ticket->status==0 && $user->id === $ticket->user_id;
+        return $ticket->status == 0 && $user->id === $ticket->user_id;
     }
 
     public function restore(User $user, Ticket $ticket)
