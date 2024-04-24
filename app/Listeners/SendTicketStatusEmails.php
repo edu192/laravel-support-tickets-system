@@ -3,13 +3,9 @@
 namespace App\Listeners;
 
 use App\Events\TicketStatusChangedEvent;
-use App\Mail\Backend\TicketCreatedMail as BackendTicketCreatedMail;
-use App\Mail\Frontend\AssignedAgentMail;
-use App\Mail\Frontend\TicketClosedMail;
-use App\Mail\Frontend\TicketCreatedMail as UserTicketCreatedMail;
 use App\Models\Ticket;
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
+use App\Notifications\TicketUpdatedNotification;
 
 class SendTicketStatusEmails
 {
@@ -36,21 +32,38 @@ class SendTicketStatusEmails
     private function ticket_created_emails(Ticket $ticket)
     : void
     {
-        Mail::to($ticket->user->email)->send(new UserTicketCreatedMail($ticket));
+//        Mail::to($ticket->user->email)->send(new UserTicketCreatedMail($ticket));
+        $ticket->user->notify(new TicketUpdatedNotification(
+            $ticket,
+            'Ticket received',
+            'Your ticket has been received. You will be notified when an agent is assigned to your ticket.',
+            route('user.ticket.show', $ticket->id)));
         User::where('type', 2)->where('department_id', $ticket->category->department_id)->each(function ($agent) use ($ticket) {
-            Mail::to($agent->email)->send(new BackendTicketCreatedMail($ticket));
+            $agent->notify(new TicketUpdatedNotification(
+                $ticket,
+                'A new ticket has been created',
+                "A new ticket has been created in the {$ticket->category->name} category.",
+                route('backend.ticket.unassigned')));
         });
     }
 
     private function ticket_assigned_agent_emails(Ticket $ticket)
     : void
     {
-        Mail::to($ticket->user->email)->send(new AssignedAgentMail($ticket));
+        $ticket->user->notify(new TicketUpdatedNotification(
+            $ticket,
+            'Your ticket has been assigned to an agent',
+            "Your ticket has been assigned to an agent. You will be notified when the agent responds.",
+            route('user.ticket.show', $ticket->id)));
     }
 
     private function closed_ticket_emails(Ticket $ticket)
     : void
     {
-        Mail::to($ticket->user->email)->send(new TicketClosedMail($ticket));
+        $ticket->user->notify(new TicketUpdatedNotification(
+            $ticket,
+            'Your ticket has been closed',
+            "Your ticket has been closed. If you have any further questions, please open a new ticket.",
+            route('user.ticket.show', $ticket->id)));
     }
 }
