@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Frontend\Ticket;
 
+use App\Events\TicketStatusChangedEvent;
 use App\Models\Category;
 use LivewireUI\Modal\ModalComponent;
 
@@ -43,7 +44,7 @@ class CreateModal extends ModalComponent
             'priority' => 'required|in:0,1,2',
         ]);
 
-        auth()->user()->tickets()->create([
+        $ticket = auth()->user()->tickets()->create([
             'category_id' => $this->category,
             'title' => $this->title,
             'description' => $this->description,
@@ -54,6 +55,7 @@ class CreateModal extends ModalComponent
 //        $this->emit('ticket_created');
         $this->dispatch('pg:eventRefresh-default');
         toastr()->success('Ticket created successfully!');
+        event(new TicketStatusChangedEvent($ticket));
         $this->closeModal();
     }
 }
