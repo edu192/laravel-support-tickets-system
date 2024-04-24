@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
+use App\Events\TicketStatusChangedEvent;
+use App\Listeners\SendTicketStatusEmails;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,12 +19,16 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        TicketStatusChangedEvent::class => [
+            SendTicketStatusEmails::class,
+        ],
     ];
 
     /**
      * Register any events for your application.
      */
-    public function boot(): void
+    public function boot()
+    : void
     {
         //
     }
@@ -31,7 +36,8 @@ class EventServiceProvider extends ServiceProvider
     /**
      * Determine if events and listeners should be automatically discovered.
      */
-    public function shouldDiscoverEvents(): bool
+    public function shouldDiscoverEvents()
+    : bool
     {
         return false;
     }
