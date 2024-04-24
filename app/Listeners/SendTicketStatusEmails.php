@@ -34,13 +34,13 @@ class SendTicketStatusEmails
     {
 //        Mail::to($ticket->user->email)->send(new UserTicketCreatedMail($ticket));
         $ticket->user->notify(new TicketUpdatedNotification(
-            $ticket,
+            $ticket->id,
             'Ticket received',
             'Your ticket has been received. You will be notified when an agent is assigned to your ticket.',
             route('user.ticket.show', $ticket->id)));
         User::where('type', 2)->where('department_id', $ticket->category->department_id)->each(function ($agent) use ($ticket) {
             $agent->notify(new TicketUpdatedNotification(
-                $ticket,
+                $ticket->id,
                 'A new ticket has been created',
                 "A new ticket has been created in the {$ticket->category->name} category.",
                 route('backend.ticket.unassigned')));
@@ -51,7 +51,7 @@ class SendTicketStatusEmails
     : void
     {
         $ticket->user->notify(new TicketUpdatedNotification(
-            $ticket,
+            $ticket->id,
             'Your ticket has been assigned to an agent',
             "Your ticket has been assigned to an agent. You will be notified when the agent responds.",
             route('user.ticket.show', $ticket->id)));
@@ -61,7 +61,7 @@ class SendTicketStatusEmails
     : void
     {
         $ticket->user->notify(new TicketUpdatedNotification(
-            $ticket,
+            $ticket->id,
             'Your ticket has been closed',
             "Your ticket has been closed. If you have any further questions, please open a new ticket.",
             route('user.ticket.show', $ticket->id)));
