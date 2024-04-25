@@ -14,9 +14,9 @@ class CommentFactory extends Factory
     : array
     {
         return [
-            'description' => $this->faker->text(),
+            'description' => $this->faker->sentence(15),
             'ticket_id' => $this->faker->randomNumber(),
-            'user_id' => $this->faker->randomNumber(),
+            'user_id' => 0,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
