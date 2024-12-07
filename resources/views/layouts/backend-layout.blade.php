@@ -27,7 +27,7 @@
                 <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
                         type="button"
                         class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-                    <span class="sr-only">Open sidebar</span>
+                    <span class="sr-only">Abrir barra lateral</span>
                     <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                          xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" fill-rule="evenodd"
@@ -44,7 +44,7 @@
                         <button type="button"
                                 class="w-8 h-8 rounded-full justify-center items-center flex text-sm bg-gray-200 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                                 aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                            <span class="sr-only">Open user menu</span>
+                            <span class="sr-only">Abrir menú de usuario</span>
                             <i class="fa-solid fa-user items-center"></i>
                         </button>
                     </div>
@@ -58,21 +58,21 @@
                                 {{auth()->user()->email}}
                             </p>
                             <p class="text-sm font-black text-gray-900 truncate dark:text-gray-300" role="none">
-                                {{auth()->user()->department?->name}} Department
+                                {{auth()->user()->department?->name}} Departamento
                             </p>
                         </div>
                         <ul class="py-1" role="none">
                             <li>
                                 <a href="{{route('backend.profile.edit')}}"
                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                   role="menuitem">Profile</a>
+                                   role="menuitem">Perfil</a>
                             </li>
                             <li>
                                 <form action="{{route('logout')}}" method="post">
                                     @csrf
                                     <button type="submit"
                                             class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                            role="menuitem">Sign out
+                                            role="menuitem">Cerrar sesión
                                     </button>
                                 </form>
                             </li>
@@ -86,7 +86,7 @@
 
 <aside id="sidebar-multi-level-sidebar"
        class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
-       aria-label="Sidebar">
+       aria-label="Barra lateral">
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
             <li>
@@ -97,7 +97,7 @@
                         <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
                         <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
                     </svg>
-                    <span class="ms-3">Dashboard</span>
+                    <span class="ms-3">Tablero</span>
                 </a>
             </li>
             <li>
@@ -118,15 +118,15 @@
                     class="{{request()->routeIs(['backend.ticket.index', 'backend.ticket.unassigned', 'backend.ticket.assigned'])?'':'hidden'}} py-2 space-y-2">
                     <li>
                         <a href="{{route('backend.ticket.assigned')}}"
-                           class="{{request()->routeIs( 'backend.ticket.assigned')?'bg-gray-100':''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Assigned</a>
+                           class="{{request()->routeIs( 'backend.ticket.assigned')?'bg-gray-100':''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Asignados</a>
                     </li>
                     <li>
                         <a href="{{route('backend.ticket.unassigned')}}"
-                           class="{{request()->routeIs( 'backend.ticket.unassigned')?'bg-gray-100':''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Unassigned</a>
+                           class="{{request()->routeIs( 'backend.ticket.unassigned')?'bg-gray-100':''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">No asignados</a>
                     </li>
                     <li>
                         <a href="{{route('backend.ticket.index')}}"
-                           class="{{request()->routeIs( 'backend.ticket.index')?'bg-gray-100':''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">All</a>
+                           class="{{request()->routeIs( 'backend.ticket.index')?'bg-gray-100':''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Todos</a>
                     </li>
                 </ul>
             </li>
@@ -135,22 +135,22 @@
                     <a href="{{route('backend.user.index')}}"
                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i
-                                class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  fa-solid fa-user"></i>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Users</span>
+                            class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  fa-solid fa-user"></i>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Usuarios</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{route('backend.department.index')}}"
                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white fa-solid fa-building"></i>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Departments</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Departamentos</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{route('backend.category.index')}}"
                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white fa-solid fa-table-list"></i>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Categories</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Categorías</span>
                     </a>
                 </li>
             @endif

@@ -1,6 +1,6 @@
 <x-backend-layout>
     <h3 class="text-2xl font-bold mb-4 border-b">
-        Profile
+        Perfil
     </h3>
 
     <form action="{{route('backend.profile.update')}}" method="post">
@@ -8,7 +8,7 @@
         <div class="grid gap-6 mb-6 md:grid-cols-2">
             <div>
                 <label for="name"
-                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
                 <input type="text" id="name" name="name"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                        placeholder="" value="{{$user->name}}"/>
@@ -18,7 +18,7 @@
             </div>
             <div>
                 <label for="email"
-                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo electrónico</label>
                 <input type="email" id="email" name="email"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                        placeholder="" value="{{$user->email}}"/>
@@ -28,13 +28,13 @@
             </div>
             <div>
                 <label for="department"
-                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department</label>
+                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Departamento</label>
                 <input type="text" id="department"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                        placeholder="" value="{{$user->department?->name}}" disabled/>
             </div>
             <div>
-                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number</label>
+                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número</label>
                 <input type="tel" id="phone" name="phone"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                        placeholder="" value="{{$user->phone}}"/>
@@ -45,7 +45,7 @@
 
         </div>
         <div class="mb-6">
-            <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+            <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dirección</label>
             <input type="text" id="address" name="address"
                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                    placeholder="" value="{{$user->address}}"/>
@@ -54,20 +54,20 @@
             @enderror
         </div>
 
-       <div class="flex justify-end">
-           <button type="submit"
-                   class=" text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-               Submit
-           </button>
-       </div>
+        <div class="flex justify-end">
+            <button type="submit"
+                    class=" text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                Enviar
+            </button>
+        </div>
     </form>
     <h4 class="text-lg font-medium text-gray-800 border-b mb-6">
-        Change password
+        Cambiar contraseña
     </h4>
     <form action="{{route('backend.profile.update.password')}}" method="post">
         @csrf
         <div class="mb-6">
-            <label for="current_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+            <label for="current_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña actual</label>
             <input type="password" id="current_password" name="current_password"
                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                    placeholder="" />
@@ -77,7 +77,7 @@
         </div>
 
         <div class="mb-6">
-            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New password</label>
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nueva contraseña</label>
             <input type="password" id="password" name="password"
                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                    placeholder="" />
@@ -87,7 +87,7 @@
         </div>
 
         <div class="mb-6">
-            <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
+            <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirmar contraseña</label>
             <input type="password" id="password_confirmation" name="password_confirmation"
                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                    placeholder="" />
@@ -99,7 +99,7 @@
         <div class="flex justify-end">
             <button type="submit"
                     class=" text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                Submit
+                Enviar
             </button>
         </div>
     </form>

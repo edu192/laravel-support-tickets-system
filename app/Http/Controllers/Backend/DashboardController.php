@@ -33,7 +33,7 @@ class DashboardController extends Controller
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->save();
-        toastr()->success('Profile updated successfully!');
+        toastr()->success('Perfil actualizado correctamente!');
         return redirect()->route('backend.profile.edit');
     }
 
@@ -46,7 +46,7 @@ class DashboardController extends Controller
         $user = auth()->user();
         $user->password = $request->password;
         $user->save();
-        toastr()->success('Password updated successfully!');
+        toastr()->success('Contraseña actualizada correctamente!');
         return redirect()->route('backend.profile.edit');
     }
 }
