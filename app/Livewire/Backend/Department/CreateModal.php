@@ -30,7 +30,7 @@ class CreateModal extends ModalComponent
         $department = new Department();
         $department->name = $this->name;
         $department->save();
-        toastr()->success('Department created successfully');
+        toastr()->success('Departamento creado con éxito');
         $this->dispatch('pg:eventRefresh-default');
         $this->closeModal();
     }

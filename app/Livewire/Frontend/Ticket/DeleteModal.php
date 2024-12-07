@@ -12,8 +12,9 @@ class DeleteModal extends ModalComponent
     public function mount()
     {
         $ticket = Ticket::find($this->rowId);
-        $this->authorize('delete',$ticket);
+        $this->authorize('delete', $ticket);
     }
+
     public function render()
     {
         return view('livewire.frontend.ticket.delete-modal');
@@ -24,7 +25,7 @@ class DeleteModal extends ModalComponent
         $ticket = Ticket::find($this->rowId);
         $ticket->delete();
         $this->dispatch('pg:eventRefresh-default');
-        toastr()->success('Ticket deleted successfully!');
+        toastr()->success('¡Ticket eliminado con éxito!');
         $this->closeModal();
     }
 }

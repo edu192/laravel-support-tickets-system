@@ -18,7 +18,7 @@ class DeleteModal extends ModalComponent
     {
         $department = Department::find($this->department_id);
         $department->delete();
-        toastr()->success('Department deleted successfully');
+        toastr()->success('Departamento eliminado con éxito');
         $this->dispatch('pg:eventRefresh-default');
         $this->closeModal();
     }

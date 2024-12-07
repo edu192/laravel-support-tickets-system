@@ -16,10 +16,10 @@ class DeleteModal extends ModalComponent
     public function delete_user()
     {
         $this->authorize('create', User::class);
-        $user=User::find($this->userId);
+        $user = User::find($this->userId);
         $user->delete();
         $this->dispatch('pg:eventRefresh-default');
-        toastr()->success('User deleted successfully!');
+        toastr()->success('¡Usuario eliminado con éxito!');
         $this->closeModal();
     }
 }

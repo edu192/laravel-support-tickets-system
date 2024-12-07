@@ -1,13 +1,13 @@
 <div class="w-full h-96 flex flex-col">
     <div class="flex justify-center border-b">
-        <h3 class="py-4 text-xl font-medium">New ticket</h3>
+        <h3 class="py-4 text-xl font-medium">Nuevo ticket</h3>
     </div>
     <form action="" class="px-4 grow flex flex-col" wire:submit.prevent="create_ticket">
         <div class="mt-2">
             <div class="grid md:grid-cols-2 gap-6 h-full">
                 <div>
                     <label for="title"
-                           class="block text-base font-medium text-gray-700 dark:text-gray-200">Title</label>
+                           class="block text-base font-medium text-gray-700 dark:text-gray-200">Título</label>
                     <input type="text" id="title" name="title" wire:model="title"
                            class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     @error('title')
@@ -17,12 +17,12 @@
                 <div>
                     <div>
                         <label for="priority"
-                               class="block text-base font-medium text-gray-700 dark:text-gray-200">Priority</label>
+                               class="block text-base font-medium text-gray-700 dark:text-gray-200">Prioridad</label>
                         <select id="priority" wire:model="priority"
                                 class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm rounded-md">
-                            <option value="0">Low</option>
-                            <option value="1">Medium</option>
-                            <option value="2">High</option>
+                            <option value="0">Baja</option>
+                            <option value="1">Media</option>
+                            <option value="2">Alta</option>
                         </select>
                         @error('priority')
                         <span class="text-red-500">{{ $message }}</span>
@@ -35,7 +35,7 @@
         <div>
             <div class=" h-full">
                 <label for="category"
-                       class="block text-base font-medium text-gray-700 dark:text-gray-200">Category</label>
+                       class="block text-base font-medium text-gray-700 dark:text-gray-200">Categoría</label>
                 <select id="category" name="category" wire:model="category"
                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm rounded-md">
                     @forelse($categories as $category)
@@ -50,7 +50,7 @@
         </div>
         <div class="grow flex flex-col">
             <label for="description"
-                   class="block text-base font-medium text-gray-700 dark:text-gray-200">Description</label>
+                   class="block text-base font-medium text-gray-700 dark:text-gray-200">Descripción</label>
             <textarea id="description" name="description" wire:model="description"
                       class="grow mt-1 h-fit focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md resize-none"></textarea>
             @error('description')
@@ -61,7 +61,7 @@
         <div class="flex justify-end pt-2">
             <button type="submit"
                     class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                Submit
+                Enviar
             </button>
         </div>
     </form>

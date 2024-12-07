@@ -19,7 +19,7 @@ class DeleteModal extends ModalComponent
     {
         $category = Category::find($this->id);
         $category->delete();
-        toastr()->success('Category deleted successfully');
+        toastr()->success('Categoría eliminada con éxito');
         $this->dispatch('pg:eventRefresh-default');
         $this->closeModal();
     }

@@ -55,7 +55,7 @@ class CreateModal extends ModalComponent
             'address' => $this->address,
             'department_id' => $this->department_id,
         ]);
-        toastr()->success('User created successfully');
+        toastr()->success('Usuario creado con éxito');
         $this->closeModal();
     }
 }

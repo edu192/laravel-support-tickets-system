@@ -71,7 +71,7 @@ class EditModal extends ModalComponent
             'password' => $this->password ? $this->password : $this->user->password,
         ]);
 
-        toastr()->success('User updated successfully');
+        toastr()->success('Usuario actualizado con éxito');
         $this->dispatch('pg:eventRefresh-default');
         $this->closeModal();
     }

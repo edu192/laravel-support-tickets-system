@@ -20,7 +20,7 @@ class CloseTicketModal extends ModalComponent
         $this->ticket->status = 2;
         $this->ticket->save();
         event(new TicketStatusChangedEvent($this->ticket));
-        toastr()->success('Ticket closed successfully!');
+        toastr()->success('¡Ticket cerrado con éxito!');
         $this->closeModal();
         return redirect()->route('backend.ticket.comments', $this->ticket->id);
     }

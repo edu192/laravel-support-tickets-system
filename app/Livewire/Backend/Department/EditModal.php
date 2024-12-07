@@ -36,7 +36,7 @@ class EditModal extends ModalComponent
         $department = Department::find($this->id);
         $department->name = $this->name;
         $department->save();
-        toastr()->success('User updated successfully');
+        toastr()->success('Departamento actualizado con éxito');
         $this->dispatch('pg:eventRefresh-default');
         $this->closeModal();
     }

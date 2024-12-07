@@ -66,14 +66,14 @@ final class Table extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Name', 'name')
+            Column::make('Nombre', 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Department', 'department_formatted', 'department_id')
+            Column::make('Departamento', 'department_formatted', 'department_id')
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+            Column::action('Acción')
         ];
     }
 
@@ -100,10 +100,10 @@ final class Table extends PowerGridComponent
                     return \Blade::render(<<<HTML
                     <div class="flex items-center justify-center">
                         <button onclick="Livewire.dispatch('openModal', { component: 'backend.category.edit-modal', arguments: { id: {{ $category->id }} }})"
-                                class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Edit</button>
+                                class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Editar</button>
 
                         <button onclick="Livewire.dispatch('openModal', { component: 'backend.category.delete-modal', arguments: { id: {{ $category->id }} }})"
-                                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+                                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Eliminar</button>
 
                     </div>
                     HTML
@@ -116,7 +116,7 @@ final class Table extends PowerGridComponent
     public function actionRules($row): array
     {
        return [
-            // Hide button edit for ID 1
+            // Ocultar botón de edición para ID 1
             Rule::button('edit')
                 ->when(fn($row) => $row->id === 1)
                 ->hide(),

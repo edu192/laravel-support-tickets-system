@@ -35,7 +35,7 @@ class AttachedFilesModal extends ModalComponent
             ]);
         }
 
-        toastr()->success('Files uploaded successfully!');
+        toastr()->success('¡Archivos subidos con éxito!');
         $this->closeModal();
     }
 }

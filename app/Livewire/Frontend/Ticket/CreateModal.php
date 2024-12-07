@@ -28,14 +28,12 @@ class CreateModal extends ModalComponent
         ]);
     }
 
-    public static function modalMaxWidth()
-    : string
+    public static function modalMaxWidth(): string
     {
         return '2xl';
     }
 
-    public function create_ticket()
-    : void
+    public function create_ticket(): void
     {
         $this->validate([
             'category' => 'required|exists:categories,id|integer',
@@ -52,9 +50,8 @@ class CreateModal extends ModalComponent
             'status' => '0',
         ]);
 
-//        $this->emit('ticket_created');
         $this->dispatch('pg:eventRefresh-default');
-        toastr()->success('Ticket created successfully!');
+        toastr()->success('¡Ticket creado con éxito!');
         event(new TicketStatusChangedEvent($ticket));
         $this->closeModal();
     }

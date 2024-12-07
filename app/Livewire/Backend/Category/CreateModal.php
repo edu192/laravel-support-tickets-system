@@ -9,10 +9,11 @@ class CreateModal extends ModalComponent
 {
     public string $name = '';
     public int $department_id = 1;
+
     public function render()
     {
         $this->authorize('create', Category::class);
-        return view('livewire.backend.category.create-modal',['departments'=>\App\Models\Department::all()]);
+        return view('livewire.backend.category.create-modal', ['departments' => \App\Models\Department::all()]);
     }
 
     public function create()
@@ -25,7 +26,7 @@ class CreateModal extends ModalComponent
         $category->name = $this->name;
         $category->department_id = $this->department_id;
         $category->save();
-        toastr()->success('Category created successfully');
+        toastr()->success('Categoría creada con éxito');
         $this->dispatch('pg:eventRefresh-default');
         $this->closeModal();
     }

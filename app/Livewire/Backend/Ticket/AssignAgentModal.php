@@ -19,8 +19,6 @@ class AssignAgentModal extends ModalComponent
         return view('livewire.backend.ticket.assign-agent-modal', ['agents' => $agents, 'assigned_agents' => $assigned_agents]);
     }
 
-
-
     public function assign()
     {
         $this->validate([
@@ -29,20 +27,17 @@ class AssignAgentModal extends ModalComponent
         $ticket = Ticket::find($this->ticket->id);
         $ticket->assigned_agent()->sync([$this->agent_id], false);
         $ticket->save();
-        toastr()->success('Ticket assigned successfully');
+        toastr()->success('Ticket asignado con éxito');
         $this->dispatch('pg:eventRefresh-default');
         $this->closeModal();
     }
-
 
     public function remove_agent($agent_id)
     {
         $ticket = Ticket::find($this->ticket->id);
         $ticket->assigned_agent()->detach($agent_id);
         $ticket->save();
-        toastr()->success('Agent removed successfully');
+        toastr()->success('Agente eliminado con éxito');
         $this->dispatch('pg:eventRefresh-default');
     }
-
-
 }

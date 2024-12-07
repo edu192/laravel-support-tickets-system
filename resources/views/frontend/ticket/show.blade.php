@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Tablero') }}
         </h2>
     </x-slot>
 
@@ -19,8 +19,8 @@
 
                             <div class="flex flex-col h-full">
 
-                                <div class="p-2 text-center  text-gray-800 font-medium text-lg bg-gray-100">
-                                    Comments
+                                <div class="p-2 text-center text-gray-800 font-medium text-lg bg-gray-100">
+                                    Comentarios
                                 </div>
 
                                 <div class="grow flex flex-col overflow-y-scroll"

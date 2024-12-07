@@ -34,7 +34,7 @@ class EditModal extends ModalComponent
         $category->name = $this->name;
         $category->department_id = $this->department_id;
         $category->save();
-        toastr()->success('Category updated successfully');
+        toastr()->success('Categoría actualizada con éxito');
         $this->dispatch('pg:eventRefresh-default');
         $this->closeModal();
     }
