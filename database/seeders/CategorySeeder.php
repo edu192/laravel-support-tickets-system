@@ -12,114 +12,114 @@ class CategorySeeder extends Seeder
     {
         if (DB::table('categories')->count() <= 0) {
             $categories = [
-                //Technical Support
+                //Soporte Técnico
                 [
-                    'name' => 'Software Installation',
+                    'name' => 'Instalación de Software',
                     'department_id' => 1,
                 ],
                 [
-                    'name' => 'Hardware Repair',
+                    'name' => 'Reparación de Hardware',
                     'department_id' => 1,
                 ],
                 [
-                    'name' => 'Network Issues',
+                    'name' => 'Problemas de Red',
                     'department_id' => 1,
                 ],
                 [
-                    'name' => 'Password Reset',
+                    'name' => 'Restablecimiento de Contraseña',
                     'department_id' => 1,
                 ],
                 [
-                    'name' => 'System Update',
+                    'name' => 'Actualización del Sistema',
                     'department_id' => 1,
                 ],
-                //Billing
+                //Facturación
                 [
-                    'name' => 'Invoicing',
+                    'name' => 'Facturación',
                     'department_id' => 2,
                 ],
                 [
-                    'name' => 'Payment Issues',
+                    'name' => 'Problemas de Pago',
                     'department_id' => 2,
                 ],
                 [
-                    'name' => 'Refunds',
+                    'name' => 'Reembolsos',
                     'department_id' => 2,
                 ],
                 [
-                    'name' => 'Account Updates',
+                    'name' => 'Actualizaciones de Cuenta',
                     'department_id' => 2,
                 ],
                 [
-                    'name' => 'Billing Inquiries',
+                    'name' => 'Consultas de Facturación',
                     'department_id' => 2,
                 ],
-                //Sales
+                //Ventas
                 [
-                    'name' => 'Lead Generation',
+                    'name' => 'Generación de Leads',
                     'department_id' => 3,
                 ],
                 [
-                    'name' => 'Customer Relationship',
+                    'name' => 'Relación con el Cliente',
                     'department_id' => 3,
                 ],
                 [
-                    'name' => 'Sales Reporting',
+                    'name' => 'Informes de Ventas',
                     'department_id' => 3,
                 ],
                 [
-                    'name' => 'Product Knowledge',
+                    'name' => 'Conocimiento del Producto',
                     'department_id' => 3,
                 ],
                 [
-                    'name' => 'Sales Training',
+                    'name' => 'Capacitación en Ventas',
                     'department_id' => 3,
                 ],
-                //Customer Service
+                //Atención al Cliente
                 [
-                    'name' => 'Product Inquiries',
+                    'name' => 'Consultas sobre Productos',
                     'department_id' => 4,
                 ],
                 [
-                    'name' => 'Order Status',
+                    'name' => 'Estado del Pedido',
                     'department_id' => 4,
                 ],
                 [
-                    'name' => 'Shipping Issues',
+                    'name' => 'Problemas de Envío',
                     'department_id' => 4,
                 ],
                 [
-                    'name' => 'Returns and Exchanges',
+                    'name' => 'Devoluciones e Intercambios',
                     'department_id' => 4,
                 ],
                 [
-                    'name' => 'Feedback',
+                    'name' => 'Comentarios',
                     'department_id' => 4,
                 ],
-                //Human Resources
+                //Recursos Humanos
                 [
-                    'name' => 'Benefits',
+                    'name' => 'Beneficios',
                     'department_id' => 5,
                 ],
                 [
-                    'name' => 'Recruitment',
+                    'name' => 'Reclutamiento',
                     'department_id' => 5,
                 ],
                 [
-                    'name' => 'Employee Relations',
+                    'name' => 'Relaciones Laborales',
                     'department_id' => 5,
                 ],
                 [
-                    'name' => 'Training',
+                    'name' => 'Capacitación',
                     'department_id' => 5,
                 ],
                 [
-                    'name' => 'Payroll',
+                    'name' => 'Nómina',
                     'department_id' => 5,
                 ],
                 //Marketing
                 [
-                    'name' => 'Social Media',
+                    'name' => 'Redes Sociales',
                     'department_id' => 6,
                 ],
                 [
@@ -131,32 +131,32 @@ class CategorySeeder extends Seeder
                     'department_id' => 6,
                 ],
                 [
-                    'name' => 'Content Creation',
+                    'name' => 'Creación de Contenido',
                     'department_id' => 6,
                 ],
                 [
-                    'name' => 'Market Research',
+                    'name' => 'Investigación de Mercado',
                     'department_id' => 6,
                 ],
-                //Product Management
+                //Gestión de Producto
                 [
-                    'name' => 'Product Development',
+                    'name' => 'Desarrollo de Producto',
                     'department_id' => 7,
                 ],
                 [
-                    'name' => 'Product Launch',
+                    'name' => 'Lanzamiento de Producto',
                     'department_id' => 7,
                 ],
                 [
-                    'name' => 'Product Feedback',
+                    'name' => 'Comentarios sobre el Producto',
                     'department_id' => 7,
                 ],
                 [
-                    'name' => 'Product Updates',
+                    'name' => 'Actualizaciones del Producto',
                     'department_id' => 7,
                 ],
                 [
-                    'name' => 'Product Training',
+                    'name' => 'Capacitación en Producto',
                     'department_id' => 7,
                 ],
             ];

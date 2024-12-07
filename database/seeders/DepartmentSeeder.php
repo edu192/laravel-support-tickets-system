@@ -11,13 +11,13 @@ class DepartmentSeeder extends Seeder
     : void
     {
         $departments = [
-            ['name' => 'Technical Support'],
-            ['name' => 'Billing'],
-            ['name' => 'Sales'],
-            ['name' => 'Customer Service'],
-            ['name' => 'Human Resources'],
+            ['name' => 'Soporte Técnico'],
+            ['name' => 'Facturación'],
+            ['name' => 'Ventas'],
+            ['name' => 'Atención al Cliente'],
+            ['name' => 'Recursos Humanos'],
             ['name' => 'Marketing'],
-            ['name' => 'Product Management'],
+            ['name' => 'Gestión de Producto'],
         ];
         DB::table('departments')->insert($departments);
     }
