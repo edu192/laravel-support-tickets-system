@@ -32,17 +32,16 @@ class SendTicketStatusEmails
     private function ticket_created_emails(Ticket $ticket)
     : void
     {
-//        Mail::to($ticket->user->email)->send(new UserTicketCreatedMail($ticket));
         $ticket->user->notify(new TicketUpdatedNotification(
             $ticket->id,
-            'Ticket received',
-            'Your ticket has been received. You will be notified when an agent is assigned to your ticket.',
+            'Ticket recibido',
+            'Su ticket ha sido recibido. Se le notificará cuando se asigne un agente a su ticket.',
             route('user.ticket.show', $ticket->id)));
         User::where('type', 2)->where('department_id', $ticket->category->department_id)->each(function ($agent) use ($ticket) {
             $agent->notify(new TicketUpdatedNotification(
                 $ticket->id,
-                'A new ticket has been created',
-                "A new ticket has been created in the {$ticket->category->name} category.",
+                'Se ha creado un nuevo ticket',
+                "Se ha creado un nuevo ticket en la categoría {$ticket->category->name}.",
                 route('backend.ticket.unassigned')));
         });
     }
@@ -52,8 +51,8 @@ class SendTicketStatusEmails
     {
         $ticket->user->notify(new TicketUpdatedNotification(
             $ticket->id,
-            'Your ticket has been assigned to an agent',
-            "Your ticket has been assigned to an agent. You will be notified when the agent responds.",
+            'Su ticket ha sido asignado a un agente',
+            "Su ticket ha sido asignado a un agente. Se le notificará cuando el agente responda.",
             route('user.ticket.show', $ticket->id)));
     }
 
@@ -62,8 +61,8 @@ class SendTicketStatusEmails
     {
         $ticket->user->notify(new TicketUpdatedNotification(
             $ticket->id,
-            'Your ticket has been closed',
-            "Your ticket has been closed. If you have any further questions, please open a new ticket.",
+            'Su ticket ha sido cerrado',
+            "Su ticket ha sido cerrado. Si tiene alguna otra pregunta, por favor abra un nuevo ticket.",
             route('user.ticket.show', $ticket->id)));
     }
 }

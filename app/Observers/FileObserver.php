@@ -11,7 +11,7 @@ class FileObserver
     : void
     {
         $file->ticket->assigned_agent()->each(function ($agent) use ($file) {
-            $agent->notify(new FileCreatedNotification($file->ticket_id, "Ticket ({$file->ticket_id}) has received a new file from the user.", route('backend.ticket.comments', $file->ticket_id)));
+            $agent->notify(new FileCreatedNotification($file->ticket_id, "El ticket ({$file->ticket_id}) ha recibido un nuevo archivo del usuario.", route('backend.ticket.comments', $file->ticket_id)));
         });
     }
 }

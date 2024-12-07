@@ -26,7 +26,7 @@ class TicketUpdatedNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject($this->subject)
-            ->greeting('Greetings!')
+            ->greeting('Hola!')
             ->line($this->message)
             ->action('View', url($this->url));
     }

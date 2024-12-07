@@ -29,8 +29,8 @@ class CommentCreatedNotification extends Notification implements ShouldQueue
     : MailMessage
     {
         return (new MailMessage)
-            ->subject('Ticket update notification')
-            ->greeting('Greetings!')
+            ->subject('Actualización de ticket')
+            ->greeting('Hola!')
             ->line($this->message)
             ->action('View', url($this->url));
     }

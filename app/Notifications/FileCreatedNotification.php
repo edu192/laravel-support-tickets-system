@@ -25,8 +25,8 @@ class FileCreatedNotification extends Notification implements ShouldQueue
     : MailMessage
     {
         return (new MailMessage)
-            ->subject("Ticket ({$this->ticketId}) has received a new file")
-            ->greeting('Greetings!')
+            ->subject("Ticket ({$this->ticketId}) ha recibido un archivo")
+            ->greeting('Hola!')
             ->line($this->message)
             ->action('View', url($this->url));
     }
